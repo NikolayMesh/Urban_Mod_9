@@ -1,12 +1,15 @@
 def is_prime(func):
     def wrapper(*args, **kwargs):
         number = func(*args, **kwargs)
-        for i in range(2, (number // 2) + 1):   # проверка на принадлежность к простым числам
+        is_prime = True
+        for i in range(2, (number // 2) + 1):   # проверка на принадлежность к простым
             if number % i == 0:
-                print("Составное")
+                is_prime = False
                 break
-            print("Простое")
-            break
+        if is_prime:
+            print('Простое')
+        else:
+            print('Составное')
         return number
     return wrapper
 
