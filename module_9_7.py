@@ -1,22 +1,19 @@
-def prime_decorator(func):
+def is_prime(func):
     def wrapper(*args, **kwargs):
         number = func(*args, **kwargs)
-        if is_prime(number):
+        for i in range(2, (number // 2) + 1):   # проверка на принадлежность к простым числам
+            if number % i == 0:
+                print("Составное")
+                break
             print("Простое")
-        else:
-            print("Составное")
+            break
         return number
     return wrapper
 
-def is_prime(n):
-    number = n
-    for i in range(2, (number // 2) + 1):
-        if number % i == 0:
-            return False
-    return True
 
-@prime_decorator
+@is_prime
 def sum_three(a,b,c):
+    """Функция, которая складывает 3 числа """
     return a + b + c
 
 if __name__ == '__main__':
